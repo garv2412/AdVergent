@@ -3,7 +3,7 @@ Unified advertising, sales, and inventory intelligence that turns fragmented com
 
 ## Hackathon submission
 
-Track 02 — Customers, Channels & Demand. See the [submission description, setup and data disclosures](docs/hackathon-submission.md). The demonstration video link is pending; Phase 14 verification remains in progress.
+Track 02 — Customers, Channels & Demand. 
 
 ## Project documentation
 
