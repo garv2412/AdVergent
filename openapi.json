@@ -1,0 +1,6646 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AdVergent",
+    "version": "0.3.0"
+  },
+  "paths": {
+    "/api/login": {
+      "post": {
+        "summary": "Login",
+        "operationId": "login_api_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/logout": {
+      "post": {
+        "summary": "Logout",
+        "operationId": "logout_api_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/session": {
+      "get": {
+        "summary": "Session",
+        "operationId": "session_api_session_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Session Api Session Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/decisions": {
+      "get": {
+        "summary": "Decisions",
+        "operationId": "decisions_api_decisions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecisionSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/decisions/history": {
+      "get": {
+        "summary": "Decision History",
+        "operationId": "decision_history_api_decisions_history_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecisionHistory"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/decisions/track": {
+      "post": {
+        "summary": "Track Decision",
+        "operationId": "track_decision_api_decisions_track_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackDecision"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecisionHistory"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/actions": {
+      "get": {
+        "summary": "Actions",
+        "operationId": "actions_api_actions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLedger"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/actions/propose": {
+      "post": {
+        "summary": "Propose Action",
+        "operationId": "propose_action_api_actions_propose_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Proposal"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionPlan"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/actions/kill-switch": {
+      "post": {
+        "summary": "Kill Actions",
+        "operationId": "kill_actions_api_actions_kill_switch_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KillSwitch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLedger"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/actions/{plan_id}/approve": {
+      "post": {
+        "summary": "Approve Action",
+        "operationId": "approve_action_api_actions__plan_id__approve_post",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Approval"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionPlan"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/actions/{plan_id}/execute": {
+      "post": {
+        "summary": "Execute Action",
+        "operationId": "execute_action_api_actions__plan_id__execute_post",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionPlan"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/actions/{plan_id}/reject": {
+      "post": {
+        "summary": "Reject Action",
+        "operationId": "reject_action_api_actions__plan_id__reject_post",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Plan Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionPlan"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/foundation": {
+      "get": {
+        "summary": "Foundation",
+        "operationId": "foundation_api_foundation_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Snapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/commerce": {
+      "get": {
+        "summary": "Commerce",
+        "operationId": "commerce_api_commerce_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommerceSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/commerce/records/{kind}": {
+      "get": {
+        "summary": "Commerce Records",
+        "operationId": "commerce_records_api_commerce_records__kind__get",
+        "parameters": [
+          {
+            "name": "kind",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  },
+                  "title": "Response Commerce Records Api Commerce Records  Kind  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ads": {
+      "get": {
+        "summary": "Ads",
+        "operationId": "ads_api_ads_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/attribution": {
+      "get": {
+        "summary": "Attribution",
+        "operationId": "attribution_api_attribution_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttributionSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/finance": {
+      "get": {
+        "summary": "Finance",
+        "operationId": "finance_api_finance_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinanceSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/inventory": {
+      "get": {
+        "summary": "Inventory",
+        "operationId": "inventory_api_inventory_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventorySnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/diagnostics": {
+      "get": {
+        "summary": "Diagnostics",
+        "operationId": "diagnostics_api_diagnostics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiagnosticsSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/budget": {
+      "get": {
+        "summary": "Budget",
+        "operationId": "budget_api_budget_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/budget/scenario": {
+      "post": {
+        "summary": "Budget Scenario",
+        "operationId": "budget_scenario_api_budget_scenario_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BudgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetSnapshot"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/cohorts": {
+      "get": {
+        "summary": "Cohorts",
+        "operationId": "cohorts_api_cohorts_get",
+        "parameters": [
+          {
+            "name": "as_of",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "As Of"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CohortSnapshot"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/breakout": {
+      "get": {
+        "summary": "Breakout",
+        "operationId": "breakout_api_breakout_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BreakoutSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/clearance": {
+      "get": {
+        "summary": "Clearance",
+        "operationId": "clearance_api_clearance_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearanceSnapshot"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/clearance/scenario": {
+      "post": {
+        "summary": "Clearance Scenario",
+        "operationId": "clearance_scenario_api_clearance_scenario_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClearanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearanceSnapshot"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Account": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Id"
+          },
+          "currency": {
+            "type": "string",
+            "const": "INR",
+            "title": "Currency"
+          },
+          "timezone": {
+            "type": "string",
+            "enum": [
+              "Asia/Kolkata",
+              "UTC"
+            ],
+            "title": "Timezone"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "id",
+          "currency",
+          "timezone"
+        ],
+        "title": "Account"
+      },
+      "ActionLedger": {
+        "properties": {
+          "simulated": {
+            "type": "boolean",
+            "const": true,
+            "title": "Simulated"
+          },
+          "kill_switch": {
+            "type": "boolean",
+            "title": "Kill Switch"
+          },
+          "plans": {
+            "items": {
+              "$ref": "#/components/schemas/ActionPlan"
+            },
+            "type": "array",
+            "title": "Plans"
+          }
+        },
+        "type": "object",
+        "required": [
+          "simulated",
+          "kill_switch",
+          "plans"
+        ],
+        "title": "ActionLedger"
+      },
+      "ActionPlan": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "actor": {
+            "type": "string",
+            "title": "Actor"
+          },
+          "client_key": {
+            "type": "string",
+            "title": "Client Key"
+          },
+          "request": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Request"
+          },
+          "plan": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Plan"
+          },
+          "digest": {
+            "type": "string",
+            "title": "Digest"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "approved",
+              "revalidating",
+              "executing",
+              "succeeded",
+              "partially_succeeded",
+              "failed",
+              "unknown",
+              "rejected",
+              "expired"
+            ],
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          },
+          "approved_by": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approved By"
+          },
+          "approved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approved At"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "steps": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Steps"
+          },
+          "events": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "actor",
+          "client_key",
+          "request",
+          "plan",
+          "digest",
+          "status",
+          "created_at",
+          "expires_at",
+          "approved_by",
+          "approved_at",
+          "error_code",
+          "steps",
+          "events"
+        ],
+        "title": "ActionPlan"
+      },
+      "AdBudget": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Account Id"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Id"
+          },
+          "owner_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Id"
+          },
+          "shared": {
+            "type": "boolean",
+            "title": "Shared"
+          },
+          "daily_paise": {
+            "type": "integer",
+            "maximum": 1000000000000.0,
+            "minimum": 0.0,
+            "title": "Daily Paise"
+          },
+          "budget_control_supported": {
+            "type": "boolean",
+            "title": "Budget Control Supported"
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "title": "Mutation Enabled"
+          },
+          "approval_required": {
+            "type": "boolean",
+            "title": "Approval Required"
+          },
+          "capability_evidence": {
+            "type": "string",
+            "title": "Capability Evidence"
+          },
+          "member_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Member Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "id",
+          "owner_id",
+          "shared",
+          "daily_paise",
+          "budget_control_supported",
+          "mutation_enabled",
+          "approval_required",
+          "capability_evidence",
+          "member_ids"
+        ],
+        "title": "AdBudget"
+      },
+      "AdData": {
+        "properties": {
+          "accounts": {
+            "items": {
+              "$ref": "#/components/schemas/Account"
+            },
+            "type": "array",
+            "title": "Accounts"
+          },
+          "budgets": {
+            "items": {
+              "$ref": "#/components/schemas/AdBudget"
+            },
+            "type": "array",
+            "title": "Budgets"
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/AdResource"
+            },
+            "type": "array",
+            "title": "Resources"
+          },
+          "reports": {
+            "items": {
+              "$ref": "#/components/schemas/AdReport"
+            },
+            "type": "array",
+            "title": "Reports"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/AdGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "report_count": {
+            "type": "integer",
+            "title": "Report Count"
+          },
+          "spend_paise": {
+            "type": "integer",
+            "title": "Spend Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "accounts",
+          "budgets",
+          "resources",
+          "reports",
+          "groups",
+          "report_count",
+          "spend_paise"
+        ],
+        "title": "AdData"
+      },
+      "AdGroup": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "title": "Account Id"
+          },
+          "reporting_day": {
+            "type": "string",
+            "title": "Reporting Day"
+          },
+          "campaign_id": {
+            "type": "string",
+            "title": "Campaign Id"
+          },
+          "budget_id": {
+            "type": "string",
+            "title": "Budget Id"
+          },
+          "report_count": {
+            "type": "integer",
+            "title": "Report Count"
+          },
+          "spend_paise": {
+            "type": "integer",
+            "title": "Spend Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "reporting_day",
+          "campaign_id",
+          "budget_id",
+          "report_count",
+          "spend_paise"
+        ],
+        "title": "AdGroup"
+      },
+      "AdReport": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "title": "Resource Id"
+          },
+          "interval_start": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Interval Start"
+          },
+          "reporting_day": {
+            "type": "string",
+            "title": "Reporting Day"
+          },
+          "source_day": {
+            "type": "string",
+            "title": "Source Day"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "reported_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Reported At"
+          },
+          "currency": {
+            "type": "string",
+            "const": "INR",
+            "title": "Currency"
+          },
+          "spend_paise": {
+            "type": "integer",
+            "title": "Spend Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "platform",
+          "account_id",
+          "resource_id",
+          "interval_start",
+          "reporting_day",
+          "source_day",
+          "revision",
+          "reported_at",
+          "currency",
+          "spend_paise"
+        ],
+        "title": "AdReport"
+      },
+      "AdResource": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Account Id"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Id"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "campaign",
+              "ad_set",
+              "ad_group",
+              "ad",
+              "asset_group"
+            ],
+            "title": "Kind"
+          },
+          "campaign_type": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "search",
+              "shopping",
+              "pmax"
+            ],
+            "title": "Campaign Type"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "paused"
+            ],
+            "title": "Status"
+          },
+          "budget_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Id"
+          },
+          "product_scope": {
+            "type": "string",
+            "enum": [
+              "single",
+              "multiple",
+              "unknown"
+            ],
+            "title": "Product Scope"
+          },
+          "source_product_refs": {
+            "items": {
+              "type": "string",
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            },
+            "type": "array",
+            "title": "Source Product Refs"
+          },
+          "campaign_id": {
+            "type": "string",
+            "title": "Campaign Id"
+          },
+          "effective_budget_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Effective Budget Id"
+          },
+          "budget_owner_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Owner Id"
+          },
+          "shared_budget": {
+            "type": "boolean",
+            "title": "Shared Budget"
+          },
+          "budget_members": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Budget Members"
+          },
+          "affected_budget_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Affected Budget Ids"
+          },
+          "status_control_supported": {
+            "type": "boolean",
+            "title": "Status Control Supported"
+          },
+          "budget_control_supported": {
+            "type": "boolean",
+            "title": "Budget Control Supported"
+          },
+          "product_control_supported": {
+            "type": "boolean",
+            "title": "Product Control Supported"
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "title": "Mutation Enabled"
+          },
+          "capability_evidence": {
+            "type": "string",
+            "title": "Capability Evidence"
+          },
+          "unsupported_reason": {
+            "type": "string",
+            "title": "Unsupported Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "id",
+          "parent_id",
+          "kind",
+          "campaign_type",
+          "name",
+          "status",
+          "budget_id",
+          "product_scope",
+          "source_product_refs",
+          "campaign_id",
+          "effective_budget_id",
+          "budget_owner_id",
+          "shared_budget",
+          "budget_members",
+          "affected_budget_ids",
+          "status_control_supported",
+          "budget_control_supported",
+          "product_control_supported",
+          "mutation_enabled",
+          "capability_evidence",
+          "unsupported_reason"
+        ],
+        "title": "AdResource"
+      },
+      "AdSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "const": "synthetic Meta/Google / real Exasol",
+            "title": "Source",
+            "default": "synthetic Meta/Google / real Exasol"
+          },
+          "currency": {
+            "type": "string",
+            "const": "INR",
+            "title": "Currency",
+            "default": "INR"
+          },
+          "reporting_timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata",
+            "title": "Reporting Timezone",
+            "default": "Asia/Kolkata"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "scenario_clock": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scenario Clock"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness",
+            "default": "unknown"
+          },
+          "age_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Seconds"
+          },
+          "freshness_limit_seconds": {
+            "type": "integer",
+            "title": "Freshness Limit Seconds",
+            "default": 900
+          },
+          "latest_import_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Import Status"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "AdSnapshot"
+      },
+      "AllocationGroup": {
+        "properties": {
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "campaign_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campaign Id"
+          },
+          "orders": {
+            "type": "integer",
+            "title": "Orders"
+          },
+          "lines": {
+            "type": "integer",
+            "title": "Lines"
+          },
+          "placed_merchandise_paise": {
+            "type": "integer",
+            "title": "Placed Merchandise Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "campaign_id",
+          "orders",
+          "lines",
+          "placed_merchandise_paise"
+        ],
+        "title": "AllocationGroup"
+      },
+      "Approval": {
+        "properties": {
+          "digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Digest"
+          },
+          "approve": {
+            "type": "boolean",
+            "const": true,
+            "title": "Approve"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "digest",
+          "approve"
+        ],
+        "title": "Approval"
+      },
+      "Assignment": {
+        "properties": {
+          "order_id": {
+            "type": "string",
+            "title": "Order Id"
+          },
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "campaign_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campaign Id"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "paid_click",
+              "ambiguous_click",
+              "no_eligible_click"
+            ],
+            "title": "Reason"
+          },
+          "click_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Click Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "order_id",
+          "platform",
+          "account_id",
+          "campaign_id",
+          "reason",
+          "click_ids"
+        ],
+        "title": "Assignment"
+      },
+      "AttributionData": {
+        "properties": {
+          "mappings": {
+            "items": {
+              "$ref": "#/components/schemas/MappingDecision"
+            },
+            "type": "array",
+            "title": "Mappings"
+          },
+          "mapping_evidence": {
+            "items": {
+              "$ref": "#/components/schemas/Mapping"
+            },
+            "type": "array",
+            "title": "Mapping Evidence"
+          },
+          "assignments": {
+            "items": {
+              "$ref": "#/components/schemas/Assignment"
+            },
+            "type": "array",
+            "title": "Assignments"
+          },
+          "clicks": {
+            "items": {
+              "$ref": "#/components/schemas/Click"
+            },
+            "type": "array",
+            "title": "Clicks"
+          },
+          "platform_claims": {
+            "items": {
+              "$ref": "#/components/schemas/Claim"
+            },
+            "type": "array",
+            "title": "Platform Claims"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/AllocationGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "product_allocations": {
+            "items": {
+              "$ref": "#/components/schemas/ProductAllocation"
+            },
+            "type": "array",
+            "title": "Product Allocations"
+          },
+          "refund_links": {
+            "items": {
+              "$ref": "#/components/schemas/RefundLink"
+            },
+            "type": "array",
+            "title": "Refund Links"
+          },
+          "reconciliation": {
+            "$ref": "#/components/schemas/Reconciliation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mappings",
+          "mapping_evidence",
+          "assignments",
+          "clicks",
+          "platform_claims",
+          "groups",
+          "product_allocations",
+          "refund_links",
+          "reconciliation"
+        ],
+        "title": "AttributionData"
+      },
+      "AttributionSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "model": {
+            "type": "string",
+            "const": "last-paid-click-7d-no-view-v1",
+            "title": "Model",
+            "default": "last-paid-click-7d-no-view-v1"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "synthetic first-party evidence / real Exasol"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "commerce_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commerce Id"
+          },
+          "ads_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ads Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "mapping_as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mapping As Of"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "latest_import_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Import Status"
+          },
+          "dependencies_current": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dependencies Current"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness",
+            "default": "unknown"
+          },
+          "age_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Seconds"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AttributionData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "AttributionSnapshot"
+      },
+      "BreakoutData": {
+        "properties": {
+          "ranking": {
+            "items": {
+              "$ref": "#/components/schemas/BreakoutRow"
+            },
+            "type": "array",
+            "title": "Ranking"
+          },
+          "source_hash": {
+            "type": "string",
+            "title": "Source Hash"
+          },
+          "source_version": {
+            "type": "string",
+            "title": "Source Version"
+          },
+          "source_observed_at": {
+            "type": "string",
+            "title": "Source Observed At"
+          },
+          "signal_end": {
+            "type": "string",
+            "title": "Signal End"
+          },
+          "evaluation_end": {
+            "type": "string",
+            "title": "Evaluation End"
+          },
+          "raw_events": {
+            "type": "integer",
+            "title": "Raw Events"
+          },
+          "unique_events": {
+            "type": "integer",
+            "title": "Unique Events"
+          },
+          "duplicate_events": {
+            "type": "integer",
+            "title": "Duplicate Events"
+          },
+          "linked_purchase_pairs": {
+            "type": "integer",
+            "title": "Linked Purchase Pairs"
+          },
+          "added_revenue_paise": {
+            "type": "integer",
+            "const": 0,
+            "title": "Added Revenue Paise",
+            "default": 0
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          },
+          "publishing_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Publishing Enabled",
+            "default": false
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis",
+            "default": "Uncalibrated descriptive synthetic ranking, no confidence probability or budget forecast. 100 views and 20 carts in each signal window; 1000 impressions and 20 clicks per window, seven tracked days and identical ad series required. Score = capped positive view growth bps + cart rate bps + CTR bps + nonnegative historical expected contribution margin bps. Historical finance costs/reserves remain unchanged; missing costs abstain. Inventory must be clear/fresh. Later seven-day evaluation never enters the score; sustained means views do not decline and carts meet 20. Events are observations, not additional orders/revenue. Purchase pairs reference existing purchased products only. Coverage means supplied synthetic tracking days, not merchant completeness or statistical significance."
+          }
+        },
+        "type": "object",
+        "required": [
+          "ranking",
+          "source_hash",
+          "source_version",
+          "source_observed_at",
+          "signal_end",
+          "evaluation_end",
+          "raw_events",
+          "unique_events",
+          "duplicate_events",
+          "linked_purchase_pairs"
+        ],
+        "title": "BreakoutData"
+      },
+      "BreakoutRow": {
+        "properties": {
+          "product_id": {
+            "type": "string",
+            "title": "Product Id"
+          },
+          "counts": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            "type": "object",
+            "title": "Counts"
+          },
+          "tracked_days": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Tracked Days"
+          },
+          "view_growth_bps": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "View Growth Bps"
+          },
+          "cart_rate_bps": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cart Rate Bps"
+          },
+          "ctr_bps": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ctr Bps"
+          },
+          "historical_margin_bps": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Historical Margin Bps"
+          },
+          "inventory_risk": {
+            "type": "string",
+            "title": "Inventory Risk"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "rank": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rank"
+          },
+          "evaluation": {
+            "type": "string",
+            "title": "Evaluation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "product_id",
+          "counts",
+          "tracked_days",
+          "view_growth_bps",
+          "cart_rate_bps",
+          "ctr_bps",
+          "historical_margin_bps",
+          "inventory_risk",
+          "blockers",
+          "score",
+          "evaluation"
+        ],
+        "title": "BreakoutRow"
+      },
+      "BreakoutSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "pins": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Pins"
+          },
+          "input_observations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Input Observations"
+          },
+          "dependencies_current": {
+            "type": "boolean",
+            "title": "Dependencies Current",
+            "default": false
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BreakoutData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "BreakoutSnapshot"
+      },
+      "BudgetData": {
+        "properties": {
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
+          "terms": {
+            "$ref": "#/components/schemas/BudgetRequest"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "scenario",
+              "abstain",
+              "infeasible"
+            ],
+            "title": "Status"
+          },
+          "total_paise": {
+            "type": "integer",
+            "title": "Total Paise"
+          },
+          "allocated_total_paise": {
+            "type": "integer",
+            "title": "Allocated Total Paise"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/BudgetRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "conservative_delta_paise": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conservative Delta Paise"
+          },
+          "upper_delta_paise": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upper Delta Paise"
+          },
+          "portfolio_contribution_after_ads_paise": {
+            "type": "null",
+            "title": "Portfolio Contribution After Ads Paise"
+          },
+          "cohort_context": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Cohort Context"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis",
+            "default": "Descriptive spend/contribution association; assumes full budget delivery. Uncalibrated synthetic scenario, not causal response, calibrated LTV, incremental profit or a predictive backtest. Slope ranges are sensitivity, not confidence bounds."
+          },
+          "approval_required": {
+            "type": "boolean",
+            "const": true,
+            "title": "Approval Required",
+            "default": true
+          },
+          "publishing_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Publishing Enabled",
+            "default": false
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "terms",
+          "status",
+          "total_paise",
+          "allocated_total_paise",
+          "blockers",
+          "rows",
+          "conservative_delta_paise",
+          "upper_delta_paise",
+          "cohort_context"
+        ],
+        "title": "BudgetData"
+      },
+      "BudgetRequest": {
+        "properties": {
+          "total_paise": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 10000000000000.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Paise"
+          },
+          "change_bps": {
+            "type": "integer",
+            "maximum": 1000.0,
+            "minimum": 0.0,
+            "title": "Change Bps",
+            "default": 1000
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "BudgetRequest"
+      },
+      "BudgetRow": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "platform": {
+            "type": "string",
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "title": "Account Id"
+          },
+          "budget_id": {
+            "type": "string",
+            "title": "Budget Id"
+          },
+          "shared": {
+            "type": "boolean",
+            "title": "Shared"
+          },
+          "members": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "products": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Products"
+          },
+          "current_paise": {
+            "type": "integer",
+            "title": "Current Paise"
+          },
+          "allocated_paise": {
+            "type": "integer",
+            "title": "Allocated Paise"
+          },
+          "minimum_paise": {
+            "type": "integer",
+            "title": "Minimum Paise"
+          },
+          "maximum_paise": {
+            "type": "integer",
+            "title": "Maximum Paise"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "response": {
+            "$ref": "#/components/schemas/ResponseBaseline"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          },
+          "historical_contribution_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Historical Contribution Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "platform",
+          "account_id",
+          "budget_id",
+          "shared",
+          "members",
+          "products",
+          "current_paise",
+          "allocated_paise",
+          "minimum_paise",
+          "maximum_paise",
+          "blockers",
+          "response"
+        ],
+        "title": "BudgetRow"
+      },
+      "BudgetSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "inputs_changed",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "pins": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Pins"
+          },
+          "input_observations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Input Observations"
+          },
+          "dependencies_current": {
+            "type": "boolean",
+            "title": "Dependencies Current",
+            "default": false
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BudgetData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "BudgetSnapshot"
+      },
+      "Change": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Resource Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "status",
+              "budget"
+            ],
+            "title": "Kind"
+          },
+          "after": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "paused"
+                ]
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "After"
+          },
+          "currency": {
+            "type": "string",
+            "const": "INR",
+            "title": "Currency",
+            "default": "INR"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "resource_id",
+          "kind",
+          "after"
+        ],
+        "title": "Change"
+      },
+      "Claim": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Resource Id"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "order_id": {
+            "type": "string",
+            "title": "Order Id"
+          },
+          "reported_value_paise": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Reported Value Paise"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "resource_id",
+          "id",
+          "order_id",
+          "reported_value_paise"
+        ],
+        "title": "Claim"
+      },
+      "ClearanceData": {
+        "properties": {
+          "ranking": {
+            "items": {
+              "$ref": "#/components/schemas/RankedVariant"
+            },
+            "type": "array",
+            "title": "Ranking"
+          },
+          "selected": {
+            "items": {
+              "$ref": "#/components/schemas/RankedVariant"
+            },
+            "type": "array",
+            "title": "Selected"
+          },
+          "baseline": {
+            "$ref": "#/components/schemas/Comparison"
+          },
+          "scenario": {
+            "$ref": "#/components/schemas/Comparison"
+          },
+          "revenue_delta_paise": {
+            "type": "integer",
+            "title": "Revenue Delta Paise"
+          },
+          "contribution_delta_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution Delta Paise"
+          },
+          "evidence_blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Blockers"
+          },
+          "feasible": {
+            "type": "boolean",
+            "title": "Feasible"
+          },
+          "assumptions": {
+            "$ref": "#/components/schemas/ClearanceRequest"
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          },
+          "publishing_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Publishing Enabled",
+            "default": false
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis",
+            "default": "Uncalibrated synthetic what-if, not a demand forecast or incremental profit. Baseline: selected bundle mix at full catalog price, explicit assumed sales, zero additional spend. Scenario: explicit sales assumption independent of markdown/spend; no fitted response. Catalog COGS are prospective synthetic estimates, never replacements for historical finance costs. Variable expense and expected return loss are per sold unit, additional spend charged once. Holding cost applies to all unsold selected stock for the full horizon; assumes sales at horizon start. Stock age is an assumption for every variant, not warehouse lot-age evidence. Markdown rounds down per unit to integer paise; excludes tax, assumes full delivery. Scenarios are alternatives and must not be added together. No discounts, bundles or campaigns are published."
+          }
+        },
+        "type": "object",
+        "required": [
+          "ranking",
+          "selected",
+          "baseline",
+          "scenario",
+          "revenue_delta_paise",
+          "contribution_delta_paise",
+          "evidence_blockers",
+          "feasible",
+          "assumptions"
+        ],
+        "title": "ClearanceData"
+      },
+      "ClearanceRequest": {
+        "properties": {
+          "components": {
+            "items": {
+              "$ref": "#/components/schemas/Component"
+            },
+            "type": "array",
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Components"
+          },
+          "baseline_bundles": {
+            "type": "integer",
+            "maximum": 100000.0,
+            "minimum": 0.0,
+            "title": "Baseline Bundles",
+            "default": 1
+          },
+          "scenario_bundles": {
+            "type": "integer",
+            "maximum": 100000.0,
+            "minimum": 0.0,
+            "title": "Scenario Bundles",
+            "default": 3
+          },
+          "markdown_bps": {
+            "type": "integer",
+            "maximum": 10000.0,
+            "minimum": 0.0,
+            "title": "Markdown Bps",
+            "default": 5000
+          },
+          "additional_spend_paise": {
+            "type": "integer",
+            "maximum": 1000000000.0,
+            "minimum": 0.0,
+            "title": "Additional Spend Paise",
+            "default": 0
+          },
+          "horizon_days": {
+            "type": "integer",
+            "maximum": 365.0,
+            "minimum": 1.0,
+            "title": "Horizon Days",
+            "default": 30
+          },
+          "assumed_stock_age_days": {
+            "type": "integer",
+            "maximum": 3650.0,
+            "minimum": 0.0,
+            "title": "Assumed Stock Age Days",
+            "default": 120
+          },
+          "deadstock_age_days": {
+            "type": "integer",
+            "maximum": 3650.0,
+            "minimum": 0.0,
+            "title": "Deadstock Age Days",
+            "default": 90
+          },
+          "holding_paise_per_unit_day": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 100000.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Holding Paise Per Unit Day",
+            "default": 5
+          },
+          "variable_paise_per_unit": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 10000000.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Paise Per Unit",
+            "default": 10000
+          },
+          "return_loss_paise_per_unit": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 10000000.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Return Loss Paise Per Unit",
+            "default": 1000
+          },
+          "min_contribution_paise": {
+            "type": "integer",
+            "maximum": 1000000000.0,
+            "minimum": 0.0,
+            "title": "Min Contribution Paise",
+            "default": 0
+          },
+          "min_margin_bps": {
+            "type": "integer",
+            "maximum": 10000.0,
+            "minimum": 0.0,
+            "title": "Min Margin Bps",
+            "default": 1000
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ClearanceRequest"
+      },
+      "ClearanceSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "pins": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Pins"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "input_observations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Input Observations"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "dependencies_current": {
+            "type": "boolean",
+            "title": "Dependencies Current",
+            "default": false
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ClearanceData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "ClearanceSnapshot"
+      },
+      "Click": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Resource Id"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "order_id": {
+            "type": "string",
+            "title": "Order Id"
+          },
+          "clicked_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Clicked At"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "paid_click",
+              "view",
+              "organic"
+            ],
+            "title": "Kind"
+          },
+          "identifiable": {
+            "type": "boolean",
+            "title": "Identifiable"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "resource_id",
+          "id",
+          "order_id",
+          "clicked_at",
+          "kind",
+          "identifiable"
+        ],
+        "title": "Click"
+      },
+      "CohortBucket": {
+        "properties": {
+          "acquisition_month": {
+            "type": "string",
+            "title": "Acquisition Month"
+          },
+          "product_id": {
+            "type": "string",
+            "title": "Product Id"
+          },
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "mature": {
+            "type": "boolean",
+            "title": "Mature"
+          },
+          "customer_weight": {
+            "type": "string",
+            "title": "Customer Weight"
+          },
+          "customers": {
+            "type": "integer",
+            "title": "Customers"
+          },
+          "missing_customers": {
+            "type": "integer",
+            "title": "Missing Customers"
+          },
+          "known_customer_contribution_paise": {
+            "type": "integer",
+            "title": "Known Customer Contribution Paise"
+          },
+          "contribution_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution Before Ads Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "acquisition_month",
+          "product_id",
+          "days",
+          "mature",
+          "customer_weight",
+          "customers",
+          "missing_customers",
+          "known_customer_contribution_paise",
+          "contribution_before_ads_paise"
+        ],
+        "title": "CohortBucket"
+      },
+      "CohortCustomer": {
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "title": "Customer Id"
+          },
+          "first_order_id": {
+            "type": "string",
+            "title": "First Order Id"
+          },
+          "first_delivered_at": {
+            "type": "string",
+            "title": "First Delivered At"
+          },
+          "acquisition_month": {
+            "type": "string",
+            "title": "Acquisition Month"
+          },
+          "acquisition_campaign": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Acquisition Campaign"
+          },
+          "history_complete": {
+            "type": "boolean",
+            "const": false,
+            "title": "History Complete",
+            "default": false
+          },
+          "weights": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Weights"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/components/schemas/CohortWindow"
+            },
+            "type": "array",
+            "title": "Windows"
+          }
+        },
+        "type": "object",
+        "required": [
+          "customer_id",
+          "first_order_id",
+          "first_delivered_at",
+          "acquisition_month",
+          "acquisition_campaign",
+          "weights",
+          "windows"
+        ],
+        "title": "CohortCustomer"
+      },
+      "CohortData": {
+        "properties": {
+          "cutoff": {
+            "type": "string",
+            "title": "Cutoff"
+          },
+          "history_start": {
+            "type": "string",
+            "title": "History Start"
+          },
+          "history_complete": {
+            "type": "boolean",
+            "const": false,
+            "title": "History Complete",
+            "default": false
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis",
+            "default": "First observed delivered purchase in incomplete available history; realized before ads; not calibrated LTV or incremental profit."
+          },
+          "customers_without_delivery": {
+            "type": "integer",
+            "title": "Customers Without Delivery"
+          },
+          "zero_value_unassigned": {
+            "type": "integer",
+            "title": "Zero Value Unassigned"
+          },
+          "customers": {
+            "items": {
+              "$ref": "#/components/schemas/CohortCustomer"
+            },
+            "type": "array",
+            "title": "Customers"
+          },
+          "buckets": {
+            "items": {
+              "$ref": "#/components/schemas/CohortBucket"
+            },
+            "type": "array",
+            "title": "Buckets"
+          },
+          "publishing_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Publishing Enabled",
+            "default": false
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "cutoff",
+          "history_start",
+          "customers_without_delivery",
+          "zero_value_unassigned",
+          "customers",
+          "buckets"
+        ],
+        "title": "CohortData"
+      },
+      "CohortSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable",
+              "inputs_changed"
+            ],
+            "title": "Status"
+          },
+          "pins": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Pins"
+          },
+          "input_observations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Input Observations"
+          },
+          "dependencies_current": {
+            "type": "boolean",
+            "title": "Dependencies Current",
+            "default": false
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CohortData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "CohortSnapshot"
+      },
+      "CohortWindow": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "end": {
+            "type": "string",
+            "title": "End"
+          },
+          "observed_until": {
+            "type": "string",
+            "title": "Observed Until"
+          },
+          "mature": {
+            "type": "boolean",
+            "title": "Mature"
+          },
+          "events": {
+            "type": "integer",
+            "title": "Events"
+          },
+          "missing_events": {
+            "type": "integer",
+            "title": "Missing Events"
+          },
+          "estimated_events": {
+            "type": "integer",
+            "title": "Estimated Events"
+          },
+          "excluded_before_acquisition": {
+            "type": "integer",
+            "title": "Excluded Before Acquisition"
+          },
+          "covered_event_contribution_paise": {
+            "type": "integer",
+            "title": "Covered Event Contribution Paise"
+          },
+          "contribution_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution Before Ads Paise"
+          },
+          "product_contribution_paise": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "object",
+            "title": "Product Contribution Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "days",
+          "end",
+          "observed_until",
+          "mature",
+          "events",
+          "missing_events",
+          "estimated_events",
+          "excluded_before_acquisition",
+          "covered_event_contribution_paise",
+          "contribution_before_ads_paise",
+          "product_contribution_paise"
+        ],
+        "title": "CohortWindow"
+      },
+      "CommerceSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "const": "synthetic Shopify-shaped / real Exasol",
+            "title": "Source",
+            "default": "synthetic Shopify-shaped / real Exasol"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "scenario_clock": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scenario Clock"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness",
+            "default": "unknown"
+          },
+          "age_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Seconds"
+          },
+          "freshness_limit_seconds": {
+            "type": "integer",
+            "title": "Freshness Limit Seconds",
+            "default": 900
+          },
+          "latest_import_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Import Status"
+          },
+          "next_page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page"
+          },
+          "repair_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Repair Count"
+          },
+          "totals": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CommerceTotals"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "CommerceSnapshot"
+      },
+      "CommerceTotals": {
+        "properties": {
+          "products": {
+            "type": "integer",
+            "title": "Products"
+          },
+          "variants": {
+            "type": "integer",
+            "title": "Variants"
+          },
+          "customers": {
+            "type": "integer",
+            "title": "Customers"
+          },
+          "orders": {
+            "type": "integer",
+            "title": "Orders"
+          },
+          "lines": {
+            "type": "integer",
+            "title": "Lines"
+          },
+          "refunds": {
+            "type": "integer",
+            "title": "Refunds"
+          },
+          "inventory": {
+            "type": "integer",
+            "title": "Inventory"
+          },
+          "ordered_units": {
+            "type": "integer",
+            "title": "Ordered Units"
+          },
+          "placed_merchandise_paise": {
+            "type": "integer",
+            "title": "Placed Merchandise Paise"
+          },
+          "missing_cost_lines": {
+            "type": "integer",
+            "title": "Missing Cost Lines"
+          },
+          "available_units": {
+            "type": "integer",
+            "title": "Available Units"
+          },
+          "sellable_units": {
+            "type": "integer",
+            "title": "Sellable Units"
+          },
+          "refunded_units": {
+            "type": "integer",
+            "title": "Refunded Units"
+          },
+          "refund_merchandise_paise": {
+            "type": "integer",
+            "title": "Refund Merchandise Paise"
+          },
+          "delivered_lines": {
+            "type": "integer",
+            "title": "Delivered Lines"
+          }
+        },
+        "type": "object",
+        "required": [
+          "products",
+          "variants",
+          "customers",
+          "orders",
+          "lines",
+          "refunds",
+          "inventory",
+          "ordered_units",
+          "placed_merchandise_paise",
+          "missing_cost_lines",
+          "available_units",
+          "sellable_units",
+          "refunded_units",
+          "refund_merchandise_paise",
+          "delivered_lines"
+        ],
+        "title": "CommerceTotals"
+      },
+      "Comparison": {
+        "properties": {
+          "bundles": {
+            "type": "integer",
+            "title": "Bundles"
+          },
+          "units": {
+            "type": "integer",
+            "title": "Units"
+          },
+          "revenue_paise": {
+            "type": "integer",
+            "title": "Revenue Paise"
+          },
+          "product_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Cost Paise"
+          },
+          "variable_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Cost Paise"
+          },
+          "return_loss_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Return Loss Paise"
+          },
+          "holding_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Holding Cost Paise"
+          },
+          "additional_spend_paise": {
+            "type": "integer",
+            "title": "Additional Spend Paise"
+          },
+          "expected_contribution_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Contribution Paise"
+          },
+          "margin_bps": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Margin Bps"
+          },
+          "cost_coverage_bps": {
+            "type": "integer",
+            "title": "Cost Coverage Bps"
+          },
+          "remaining_units": {
+            "type": "integer",
+            "title": "Remaining Units"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "limits_pass": {
+            "type": "boolean",
+            "title": "Limits Pass"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bundles",
+          "units",
+          "revenue_paise",
+          "product_cost_paise",
+          "variable_cost_paise",
+          "return_loss_paise",
+          "holding_cost_paise",
+          "additional_spend_paise",
+          "expected_contribution_paise",
+          "margin_bps",
+          "cost_coverage_bps",
+          "remaining_units",
+          "blockers",
+          "limits_pass"
+        ],
+        "title": "Comparison"
+      },
+      "Component": {
+        "properties": {
+          "variant_id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Variant Id"
+          },
+          "units_per_bundle": {
+            "type": "integer",
+            "maximum": 1000.0,
+            "minimum": 1.0,
+            "title": "Units Per Bundle",
+            "default": 1
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "variant_id"
+        ],
+        "title": "Component"
+      },
+      "DecisionData": {
+        "properties": {
+          "digest": {
+            "type": "string",
+            "title": "Digest",
+            "default": ""
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          },
+          "decisions": {
+            "items": {
+              "$ref": "#/components/schemas/UnifiedDecision"
+            },
+            "type": "array",
+            "title": "Decisions"
+          },
+          "budget": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Budget"
+          },
+          "context": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Context"
+          },
+          "proposal_validity": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Proposal Validity"
+          },
+          "tracked_validity": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Tracked Validity"
+          },
+          "publishing_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Publishing Enabled",
+            "default": false
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis",
+            "default": "Synthetic advisory decisions. Recorded action read-back is not a financial, causal or incremental-profit outcome. No recommendation grants approval."
+          }
+        },
+        "type": "object",
+        "required": [
+          "valid_until",
+          "decisions",
+          "budget",
+          "context",
+          "proposal_validity"
+        ],
+        "title": "DecisionData"
+      },
+      "DecisionHistory": {
+        "properties": {
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/DecisionObservation"
+            },
+            "type": "array",
+            "title": "Observations"
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          },
+          "publishing_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Publishing Enabled",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "observations"
+        ],
+        "title": "DecisionHistory"
+      },
+      "DecisionObservation": {
+        "properties": {
+          "digest": {
+            "type": "string",
+            "title": "Digest"
+          },
+          "resource_key": {
+            "type": "string",
+            "title": "Resource Key"
+          },
+          "snapshot": {
+            "$ref": "#/components/schemas/DecisionSnapshot"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Recorded At"
+          },
+          "recorded_by": {
+            "type": "string",
+            "title": "Recorded By",
+            "default": "demo operator"
+          },
+          "linked_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Linked At"
+          },
+          "action_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Id"
+          },
+          "outcome": {
+            "type": "string",
+            "title": "Outcome"
+          },
+          "action_steps": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Action Steps"
+          },
+          "financial_outcome_paise": {
+            "type": "null",
+            "title": "Financial Outcome Paise"
+          },
+          "validity": {
+            "type": "string",
+            "const": "unknown_until_current_query",
+            "title": "Validity",
+            "default": "unknown_until_current_query"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis"
+          }
+        },
+        "type": "object",
+        "required": [
+          "digest",
+          "resource_key",
+          "snapshot",
+          "recorded_at",
+          "outcome",
+          "action_steps",
+          "basis"
+        ],
+        "title": "DecisionObservation"
+      },
+      "DecisionSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "inputs_changed",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "pins": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Pins"
+          },
+          "input_observations": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Input Observations"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DecisionData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "DecisionSnapshot"
+      },
+      "DiagnosticsData": {
+        "properties": {
+          "recommendations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "assumptions": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Assumptions"
+          },
+          "evaluated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Evaluated At"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis"
+          },
+          "variant_price_evidence": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Variant Price Evidence"
+          },
+          "ctr_evidence": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Ctr Evidence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recommendations",
+          "assumptions",
+          "evaluated_at",
+          "basis",
+          "variant_price_evidence",
+          "ctr_evidence"
+        ],
+        "title": "DiagnosticsData"
+      },
+      "DiagnosticsSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "synthetic diagnostics / real Exasol; advisory and approval-required"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "finance_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finance Id"
+          },
+          "commerce_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commerce Id"
+          },
+          "ads_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ads Id"
+          },
+          "attribution_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "latest_import_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Import Status"
+          },
+          "dependencies_current": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dependencies Current"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness",
+            "default": "unknown"
+          },
+          "age_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Seconds"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiagnosticsData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "inventory_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inventory Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "DiagnosticsSnapshot"
+      },
+      "FinanceAllocation": {
+        "properties": {
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "campaign_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campaign Id"
+          },
+          "totals": {
+            "$ref": "#/components/schemas/FinanceTotals"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "campaign_id",
+          "totals"
+        ],
+        "title": "FinanceAllocation"
+      },
+      "FinanceData": {
+        "properties": {
+          "reserve_evidence": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Reserve Evidence"
+          },
+          "transaction_days": {
+            "items": {
+              "$ref": "#/components/schemas/FinanceDay"
+            },
+            "type": "array",
+            "title": "Transaction Days"
+          },
+          "acquisition_days": {
+            "items": {
+              "$ref": "#/components/schemas/FinanceDay"
+            },
+            "type": "array",
+            "title": "Acquisition Days"
+          },
+          "totals": {
+            "$ref": "#/components/schemas/FinanceTotals"
+          },
+          "allocations": {
+            "items": {
+              "$ref": "#/components/schemas/FinanceAllocation"
+            },
+            "type": "array",
+            "title": "Allocations"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/FinanceLine"
+            },
+            "type": "array",
+            "title": "Lines"
+          },
+          "refund_count": {
+            "type": "integer",
+            "title": "Refund Count"
+          },
+          "reconciled": {
+            "type": "boolean",
+            "title": "Reconciled"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reserve_evidence",
+          "transaction_days",
+          "acquisition_days",
+          "totals",
+          "allocations",
+          "lines",
+          "refund_count",
+          "reconciled"
+        ],
+        "title": "FinanceData"
+      },
+      "FinanceDay": {
+        "properties": {
+          "day": {
+            "type": "string",
+            "title": "Day"
+          },
+          "events": {
+            "type": "integer",
+            "title": "Events"
+          },
+          "net_sales_paise": {
+            "type": "integer",
+            "title": "Net Sales Paise"
+          },
+          "cash_paise": {
+            "type": "integer",
+            "title": "Cash Paise"
+          },
+          "missing_events": {
+            "type": "integer",
+            "title": "Missing Events"
+          },
+          "covered_contribution_paise": {
+            "type": "integer",
+            "title": "Covered Contribution Paise"
+          },
+          "contribution_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution Before Ads Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "day",
+          "events",
+          "net_sales_paise",
+          "cash_paise",
+          "missing_events",
+          "covered_contribution_paise",
+          "contribution_before_ads_paise"
+        ],
+        "title": "FinanceDay"
+      },
+      "FinanceLine": {
+        "properties": {
+          "events": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "line_id": {
+            "type": "string",
+            "title": "Line Id"
+          },
+          "order_id": {
+            "type": "string",
+            "title": "Order Id"
+          },
+          "placed_paise": {
+            "type": "integer",
+            "title": "Placed Paise"
+          },
+          "delivered_paise": {
+            "type": "integer",
+            "title": "Delivered Paise"
+          },
+          "refunded_paise": {
+            "type": "integer",
+            "title": "Refunded Paise"
+          },
+          "shipping_paise": {
+            "type": "integer",
+            "title": "Shipping Paise"
+          },
+          "sold_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sold Cost Paise"
+          },
+          "recovered_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recovered Paise"
+          },
+          "failed_loss_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failed Loss Paise"
+          },
+          "variable_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Paise"
+          },
+          "reserve_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reserve Paise"
+          },
+          "cash_paise": {
+            "type": "integer",
+            "title": "Cash Paise"
+          },
+          "unsettled_cod_paise": {
+            "type": "integer",
+            "title": "Unsettled Cod Paise"
+          },
+          "cost_status": {
+            "type": "string",
+            "title": "Cost Status"
+          },
+          "expense_status": {
+            "type": "string",
+            "title": "Expense Status"
+          },
+          "exposed_units": {
+            "type": "integer",
+            "title": "Exposed Units"
+          },
+          "evidence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence"
+          },
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "campaign_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campaign Id"
+          },
+          "net_sales_paise": {
+            "type": "integer",
+            "title": "Net Sales Paise"
+          },
+          "net_product_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Net Product Cost Paise"
+          },
+          "contribution_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution Before Ads Paise"
+          },
+          "expected_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Before Ads Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "events",
+          "line_id",
+          "order_id",
+          "placed_paise",
+          "delivered_paise",
+          "refunded_paise",
+          "shipping_paise",
+          "sold_cost_paise",
+          "recovered_paise",
+          "failed_loss_paise",
+          "variable_paise",
+          "reserve_paise",
+          "cash_paise",
+          "unsettled_cod_paise",
+          "cost_status",
+          "expense_status",
+          "exposed_units",
+          "evidence",
+          "platform",
+          "account_id",
+          "campaign_id",
+          "net_sales_paise",
+          "net_product_cost_paise",
+          "contribution_before_ads_paise",
+          "expected_before_ads_paise"
+        ],
+        "title": "FinanceLine"
+      },
+      "FinanceSnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "synthetic finance ledger / real Exasol"
+          },
+          "currency": {
+            "type": "string",
+            "const": "INR",
+            "title": "Currency",
+            "default": "INR"
+          },
+          "recognition": {
+            "type": "string",
+            "title": "Recognition",
+            "default": "delivery-based; management contribution, not statutory net profit"
+          },
+          "input_observations": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Observations"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "commerce_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commerce Id"
+          },
+          "ads_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ads Id"
+          },
+          "attribution_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "period_start": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Period Start"
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "As Of"
+          },
+          "reserve_assumptions": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reserve Assumptions"
+          },
+          "latest_import_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Import Status"
+          },
+          "dependencies_current": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dependencies Current"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness",
+            "default": "unknown"
+          },
+          "age_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Seconds"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/FinanceData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "FinanceSnapshot"
+      },
+      "FinanceTotals": {
+        "properties": {
+          "net_product_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Net Product Cost Paise"
+          },
+          "variable_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Paise"
+          },
+          "lines": {
+            "type": "integer",
+            "title": "Lines"
+          },
+          "orders": {
+            "type": "integer",
+            "title": "Orders"
+          },
+          "placed_paise": {
+            "type": "integer",
+            "title": "Placed Paise"
+          },
+          "delivered_paise": {
+            "type": "integer",
+            "title": "Delivered Paise"
+          },
+          "refunded_paise": {
+            "type": "integer",
+            "title": "Refunded Paise"
+          },
+          "net_sales_paise": {
+            "type": "integer",
+            "title": "Net Sales Paise"
+          },
+          "cash_paise": {
+            "type": "integer",
+            "title": "Cash Paise"
+          },
+          "unsettled_cod_paise": {
+            "type": "integer",
+            "title": "Unsettled Cod Paise"
+          },
+          "missing_lines": {
+            "type": "integer",
+            "title": "Missing Lines"
+          },
+          "estimated_lines": {
+            "type": "integer",
+            "title": "Estimated Lines"
+          },
+          "cost_coverage_bps": {
+            "type": "integer",
+            "title": "Cost Coverage Bps"
+          },
+          "covered_contribution_paise": {
+            "type": "integer",
+            "title": "Covered Contribution Paise"
+          },
+          "expected_missing_lines": {
+            "type": "integer",
+            "title": "Expected Missing Lines"
+          },
+          "covered_expected_paise": {
+            "type": "integer",
+            "title": "Covered Expected Paise"
+          },
+          "exposed_units": {
+            "type": "integer",
+            "title": "Exposed Units"
+          },
+          "reserve_missing_lines": {
+            "type": "integer",
+            "title": "Reserve Missing Lines"
+          },
+          "reserve_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reserve Paise"
+          },
+          "spend_paise": {
+            "type": "integer",
+            "title": "Spend Paise"
+          },
+          "contribution_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution Before Ads Paise"
+          },
+          "contribution_after_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contribution After Ads Paise"
+          },
+          "expected_before_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Before Ads Paise"
+          },
+          "expected_after_ads_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected After Ads Paise"
+          },
+          "poas": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Poas"
+          },
+          "mer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "net_product_cost_paise",
+          "variable_paise",
+          "lines",
+          "orders",
+          "placed_paise",
+          "delivered_paise",
+          "refunded_paise",
+          "net_sales_paise",
+          "cash_paise",
+          "unsettled_cod_paise",
+          "missing_lines",
+          "estimated_lines",
+          "cost_coverage_bps",
+          "covered_contribution_paise",
+          "expected_missing_lines",
+          "covered_expected_paise",
+          "exposed_units",
+          "reserve_missing_lines",
+          "reserve_paise",
+          "spend_paise",
+          "contribution_before_ads_paise",
+          "contribution_after_ads_paise",
+          "expected_before_ads_paise",
+          "expected_after_ads_paise",
+          "poas",
+          "mer"
+        ],
+        "title": "FinanceTotals"
+      },
+      "GoldenMetric": {
+        "properties": {
+          "line_count": {
+            "type": "integer",
+            "title": "Line Count"
+          },
+          "net_sales_paise": {
+            "type": "integer",
+            "title": "Net Sales Paise"
+          },
+          "product_cost_paise": {
+            "type": "integer",
+            "title": "Product Cost Paise"
+          },
+          "variable_cost_paise": {
+            "type": "integer",
+            "title": "Variable Cost Paise"
+          },
+          "ad_spend_paise": {
+            "type": "integer",
+            "title": "Ad Spend Paise"
+          },
+          "contribution_before_ads_paise": {
+            "type": "integer",
+            "title": "Contribution Before Ads Paise"
+          },
+          "contribution_after_ads_paise": {
+            "type": "integer",
+            "title": "Contribution After Ads Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "line_count",
+          "net_sales_paise",
+          "product_cost_paise",
+          "variable_cost_paise",
+          "ad_spend_paise",
+          "contribution_before_ads_paise",
+          "contribution_after_ads_paise"
+        ],
+        "title": "GoldenMetric"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "InventoryData": {
+        "properties": {
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/InventoryProduct"
+            },
+            "type": "array",
+            "title": "Products"
+          },
+          "recommendations": {
+            "items": {
+              "$ref": "#/components/schemas/InventoryRecommendation"
+            },
+            "type": "array",
+            "title": "Recommendations"
+          },
+          "sellable_units": {
+            "type": "integer",
+            "title": "Sellable Units"
+          },
+          "variants": {
+            "type": "integer",
+            "title": "Variants"
+          },
+          "reconciled": {
+            "type": "boolean",
+            "title": "Reconciled"
+          },
+          "assumptions": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Assumptions"
+          },
+          "demand_basis": {
+            "type": "string",
+            "title": "Demand Basis"
+          },
+          "finance_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Finance Id"
+          },
+          "evaluated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Evaluated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "products",
+          "recommendations",
+          "sellable_units",
+          "variants",
+          "reconciled",
+          "assumptions",
+          "demand_basis",
+          "finance_id",
+          "evaluated_at"
+        ],
+        "title": "InventoryData"
+      },
+      "InventoryImpact": {
+        "properties": {
+          "delivered_sample_units": {
+            "type": "integer",
+            "title": "Delivered Sample Units"
+          },
+          "daily_contribution_context_paise": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Daily Contribution Context Paise"
+          },
+          "scenario_assumption": {
+            "type": "string",
+            "title": "Scenario Assumption"
+          },
+          "basis": {
+            "type": "string",
+            "title": "Basis"
+          },
+          "lines": {
+            "type": "integer",
+            "title": "Lines"
+          },
+          "missing_lines": {
+            "type": "integer",
+            "title": "Missing Lines"
+          },
+          "expected_contribution_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Contribution Paise"
+          },
+          "covered_subtotal_paise": {
+            "type": "integer",
+            "title": "Covered Subtotal Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "delivered_sample_units",
+          "daily_contribution_context_paise",
+          "scenario_assumption",
+          "basis",
+          "lines",
+          "missing_lines",
+          "expected_contribution_paise",
+          "covered_subtotal_paise"
+        ],
+        "title": "InventoryImpact"
+      },
+      "InventoryProduct": {
+        "properties": {
+          "suggested_action": {
+            "type": "string",
+            "title": "Suggested Action"
+          },
+          "approval_required": {
+            "type": "boolean",
+            "title": "Approval Required"
+          },
+          "affected_scope": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Affected Scope"
+          },
+          "product_id": {
+            "type": "string",
+            "title": "Product Id"
+          },
+          "sellable_units": {
+            "type": "integer",
+            "title": "Sellable Units"
+          },
+          "daily_velocity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Daily Velocity"
+          },
+          "days_of_cover": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Days Of Cover"
+          },
+          "lead_days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead Days"
+          },
+          "lead_source": {
+            "type": "string",
+            "title": "Lead Source"
+          },
+          "warning": {
+            "type": "boolean",
+            "title": "Warning"
+          },
+          "stockout": {
+            "type": "boolean",
+            "title": "Stockout"
+          },
+          "unavailable_weight_bps": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Weight Bps"
+          },
+          "weight_source": {
+            "type": "string",
+            "title": "Weight Source"
+          },
+          "pause_eligible": {
+            "type": "boolean",
+            "title": "Pause Eligible"
+          },
+          "throttle_eligible": {
+            "type": "boolean",
+            "title": "Throttle Eligible"
+          },
+          "recovery_stock_eligible": {
+            "type": "boolean",
+            "title": "Recovery Stock Eligible"
+          },
+          "risk": {
+            "type": "string",
+            "title": "Risk"
+          },
+          "uncertain": {
+            "type": "boolean",
+            "title": "Uncertain"
+          },
+          "fresh": {
+            "type": "boolean",
+            "title": "Fresh"
+          },
+          "variants": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Variants"
+          }
+        },
+        "type": "object",
+        "required": [
+          "suggested_action",
+          "approval_required",
+          "affected_scope",
+          "product_id",
+          "sellable_units",
+          "daily_velocity",
+          "days_of_cover",
+          "lead_days",
+          "lead_source",
+          "warning",
+          "stockout",
+          "unavailable_weight_bps",
+          "weight_source",
+          "pause_eligible",
+          "throttle_eligible",
+          "recovery_stock_eligible",
+          "risk",
+          "uncertain",
+          "fresh",
+          "variants"
+        ],
+        "title": "InventoryProduct"
+      },
+      "InventoryRecommendation": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "title": "Resource Id"
+          },
+          "campaign_id": {
+            "type": "string",
+            "title": "Campaign Id"
+          },
+          "affected_products": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Affected Products"
+          },
+          "mapping": {
+            "$ref": "#/components/schemas/MappingDecision"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "eligibility": {
+            "type": "string",
+            "title": "Eligibility"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "approval_required": {
+            "type": "boolean",
+            "title": "Approval Required"
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "title": "Mutation Enabled"
+          },
+          "capability_evidence": {
+            "type": "string",
+            "title": "Capability Evidence"
+          },
+          "budget_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget Id"
+          },
+          "budget_members": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Budget Members"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          },
+          "impact": {
+            "$ref": "#/components/schemas/InventoryImpact"
+          },
+          "evidence_products": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Products"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "resource_id",
+          "campaign_id",
+          "affected_products",
+          "mapping",
+          "action",
+          "eligibility",
+          "blockers",
+          "approval_required",
+          "mutation_enabled",
+          "capability_evidence",
+          "budget_id",
+          "budget_members",
+          "state",
+          "impact",
+          "evidence_products"
+        ],
+        "title": "InventoryRecommendation"
+      },
+      "InventorySnapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "synthetic warehouse observations / real Exasol; approval-required advisory only"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "finance_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finance Id"
+          },
+          "commerce_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commerce Id"
+          },
+          "ads_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ads Id"
+          },
+          "attribution_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attribution Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed At"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "latest_import_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Import Status"
+          },
+          "dependencies_current": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dependencies Current"
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness",
+            "default": "unknown"
+          },
+          "age_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Seconds"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InventoryData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "InventorySnapshot"
+      },
+      "KillSwitch": {
+        "properties": {
+          "stopped": {
+            "type": "boolean",
+            "title": "Stopped"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stopped"
+        ],
+        "title": "KillSwitch"
+      },
+      "Login": {
+        "properties": {
+          "password": {
+            "type": "string",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "password"
+        ],
+        "title": "Login"
+      },
+      "Mapping": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "meta",
+              "google"
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Resource Id"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "products": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Products"
+          },
+          "provenance": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Provenance"
+          },
+          "confidence_bps": {
+            "type": "integer",
+            "maximum": 10000.0,
+            "minimum": 0.0,
+            "title": "Confidence Bps"
+          },
+          "valid_from": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Valid From"
+          },
+          "valid_to": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Valid To"
+          },
+          "override": {
+            "type": "boolean",
+            "title": "Override",
+            "default": false
+          },
+          "actor": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Actor"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "resource_id",
+          "id",
+          "products",
+          "provenance",
+          "confidence_bps",
+          "valid_from",
+          "valid_to",
+          "actor",
+          "reason"
+        ],
+        "title": "Mapping"
+      },
+      "MappingDecision": {
+        "properties": {
+          "platform": {
+            "type": "string",
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "title": "Resource Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "resolved",
+              "ambiguous",
+              "unmapped"
+            ],
+            "title": "Status"
+          },
+          "products": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Products"
+          },
+          "evidence_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Ids"
+          },
+          "override": {
+            "type": "boolean",
+            "title": "Override"
+          },
+          "product_control_supported": {
+            "type": "boolean",
+            "title": "Product Control Supported"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "resource_id",
+          "status",
+          "products",
+          "evidence_ids",
+          "override",
+          "product_control_supported"
+        ],
+        "title": "MappingDecision"
+      },
+      "ProductAllocation": {
+        "properties": {
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "campaign_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campaign Id"
+          },
+          "product_id": {
+            "type": "string",
+            "title": "Product Id"
+          },
+          "lines": {
+            "type": "integer",
+            "title": "Lines"
+          },
+          "placed_merchandise_paise": {
+            "type": "integer",
+            "title": "Placed Merchandise Paise"
+          }
+        },
+        "type": "object",
+        "required": [
+          "platform",
+          "account_id",
+          "campaign_id",
+          "product_id",
+          "lines",
+          "placed_merchandise_paise"
+        ],
+        "title": "ProductAllocation"
+      },
+      "Proposal": {
+        "properties": {
+          "client_key": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Client Key"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "pause",
+              "resume",
+              "throttle",
+              "transfer",
+              "recovery"
+            ],
+            "title": "Action"
+          },
+          "changes": {
+            "items": {
+              "$ref": "#/components/schemas/Change"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Changes"
+          },
+          "recovery_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recovery Of"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "client_key",
+          "action",
+          "changes",
+          "reason"
+        ],
+        "title": "Proposal"
+      },
+      "RankedVariant": {
+        "properties": {
+          "variant_id": {
+            "type": "string",
+            "title": "Variant Id"
+          },
+          "product_id": {
+            "type": "string",
+            "title": "Product Id"
+          },
+          "sellable_units": {
+            "type": "integer",
+            "title": "Sellable Units"
+          },
+          "price_paise": {
+            "type": "integer",
+            "title": "Price Paise"
+          },
+          "unit_cost_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Cost Paise"
+          },
+          "cost_status": {
+            "type": "string",
+            "title": "Cost Status"
+          },
+          "stock_observed_at": {
+            "type": "string",
+            "title": "Stock Observed At"
+          },
+          "fresh": {
+            "type": "boolean",
+            "title": "Fresh"
+          },
+          "demand_status": {
+            "type": "string",
+            "title": "Demand Status"
+          },
+          "daily_velocity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Daily Velocity"
+          },
+          "assumed_stock_age_days": {
+            "type": "integer",
+            "title": "Assumed Stock Age Days"
+          },
+          "excess_units": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Excess Units"
+          },
+          "deadstock_candidate": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadstock Candidate"
+          },
+          "age_excess_score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Age Excess Score"
+          }
+        },
+        "type": "object",
+        "required": [
+          "variant_id",
+          "product_id",
+          "sellable_units",
+          "price_paise",
+          "unit_cost_paise",
+          "cost_status",
+          "stock_observed_at",
+          "fresh",
+          "demand_status",
+          "daily_velocity",
+          "assumed_stock_age_days",
+          "excess_units",
+          "deadstock_candidate",
+          "age_excess_score"
+        ],
+        "title": "RankedVariant"
+      },
+      "Reconciliation": {
+        "properties": {
+          "orders": {
+            "type": "integer",
+            "title": "Orders"
+          },
+          "lines": {
+            "type": "integer",
+            "title": "Lines"
+          },
+          "placed_merchandise_paise": {
+            "type": "integer",
+            "title": "Placed Merchandise Paise"
+          },
+          "refunds": {
+            "type": "integer",
+            "title": "Refunds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "orders",
+          "lines",
+          "placed_merchandise_paise",
+          "refunds"
+        ],
+        "title": "Reconciliation"
+      },
+      "Record": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "products",
+              "variants",
+              "customers",
+              "orders",
+              "lines",
+              "refunds",
+              "inventory"
+            ],
+            "title": "Kind"
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Id"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "deleted": {
+            "type": "boolean",
+            "title": "Deleted",
+            "default": false
+          },
+          "data": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Data"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "updated_at",
+          "data"
+        ],
+        "title": "Record"
+      },
+      "RefundLink": {
+        "properties": {
+          "refund_id": {
+            "type": "string",
+            "title": "Refund Id"
+          },
+          "order_id": {
+            "type": "string",
+            "title": "Order Id"
+          },
+          "refunded_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Refunded At"
+          },
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "account_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "campaign_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Campaign Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "refund_id",
+          "order_id",
+          "refunded_at",
+          "platform",
+          "account_id",
+          "campaign_id"
+        ],
+        "title": "RefundLink"
+      },
+      "ResponseBaseline": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "abstain"
+            ],
+            "title": "Status"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "spend_levels": {
+            "type": "integer",
+            "title": "Spend Levels"
+          },
+          "minimum_spend_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum Spend Paise"
+          },
+          "maximum_spend_paise": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum Spend Paise"
+          },
+          "lower_slope": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lower Slope"
+          },
+          "upper_slope": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upper Slope"
+          },
+          "observations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Observations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "blockers",
+          "days",
+          "spend_levels",
+          "observations"
+        ],
+        "title": "ResponseBaseline"
+      },
+      "Snapshot": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "not_loaded",
+              "analytics_unavailable"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "const": "synthetic / real Exasol",
+            "title": "Source",
+            "default": "synthetic / real Exasol"
+          },
+          "currency": {
+            "type": "string",
+            "const": "INR",
+            "title": "Currency",
+            "default": "INR"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "refresh_job_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Refresh Job Id"
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version"
+          },
+          "fixture_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fixture Hash"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "queried_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queried At"
+          },
+          "latest_refresh_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Refresh Status"
+          },
+          "metric": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GoldenMetric"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "Snapshot"
+      },
+      "TrackDecision": {
+        "properties": {
+          "digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Digest"
+          },
+          "key": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1,
+            "title": "Key"
+          },
+          "action_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "digest",
+          "key"
+        ],
+        "title": "TrackDecision"
+      },
+      "UnifiedDecision": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "platform": {
+            "type": "string",
+            "title": "Platform"
+          },
+          "account_id": {
+            "type": "string",
+            "title": "Account Id"
+          },
+          "resource_id": {
+            "type": "string",
+            "title": "Resource Id"
+          },
+          "resource_kind": {
+            "type": "string",
+            "title": "Resource Kind"
+          },
+          "advice": {
+            "type": "string",
+            "enum": [
+              "pause_review",
+              "throttle_review",
+              "recovery_review",
+              "budget_comparison",
+              "diagnostic_review",
+              "creative_review",
+              "abstain"
+            ],
+            "title": "Advice"
+          },
+          "products": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Products"
+          },
+          "members": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Members"
+          },
+          "blockers": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Blockers"
+          },
+          "suppressed": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Suppressed"
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation"
+          },
+          "evidence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Evidence"
+          },
+          "change": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Change"
+          },
+          "approval_required": {
+            "type": "boolean",
+            "const": true,
+            "title": "Approval Required",
+            "default": true
+          },
+          "mutation_enabled": {
+            "type": "boolean",
+            "const": false,
+            "title": "Mutation Enabled",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "platform",
+          "account_id",
+          "resource_id",
+          "resource_kind",
+          "advice",
+          "products",
+          "members",
+          "blockers",
+          "suppressed",
+          "explanation",
+          "evidence"
+        ],
+        "title": "UnifiedDecision"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

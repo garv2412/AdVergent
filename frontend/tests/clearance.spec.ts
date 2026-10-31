@@ -1,0 +1,56 @@
+import {test,expect} from '@playwright/test';
+
+test('real clearance A18 baseline, configurable bundles, missing costs and no publishing',async({page,request})=>{
+  test.skip(!process.env.E2E_OPERATOR_PASSWORD||process.env.E2E_DATABASE_FAILURE==='1','Authenticated healthy real stores only');
+  test.setTimeout(120000);
+  expect((await request.get('/api/clearance')).status()).toBe(401);
+  await page.goto('/');await page.getByLabel('Operator password').fill(process.env.E2E_OPERATOR_PASSWORD!);
+  await page.getByRole('button',{name:'Open workspace'}).click();
+  const region=page.getByRole('region',{name:'Clearance',exact:true});
+  await expect(region.getByTestId('clearance-summary')).toContainText('180 variants ranked',{timeout:60000});
+  await expect(region.getByTestId('clearance-summary')).toContainText('fails limits');
+  await expect(region.getByTestId('clearance-deltas')).toContainText('₹405.00');
+  await expect(region.getByTestId('clearance-deltas')).toContainText('-₹454.00');
+  await expect(region.getByRole('alert')).toContainText('stale');
+  let snap=await(await page.request.get('/api/clearance')).json();
+  expect(snap.data.baseline.expected_contribution_paise).toBe(32050);
+  expect(snap.data.scenario.expected_contribution_paise).toBe(-13350);
+  expect(snap.data.scenario.blockers).toEqual(['contribution floor','margin floor']);
+  expect(snap.data.mutation_enabled).toBe(false);expect(snap.data.publishing_enabled).toBe(false);
+  await region.screenshot({path:'../.runtime/real-clearance-a18.png'});
+  const pins=snap.pins;
+  await region.getByLabel('Scenario bundles sold',{exact:true}).fill('41');
+  await region.getByRole('button',{name:'Compare scenario',exact:true}).click();
+  await expect(region.getByRole('cell').filter({hasText:'stock limit: v6'})).toBeVisible({timeout:60000});
+  await region.getByLabel('Scenario bundles sold',{exact:true}).fill('2');
+  await region.getByLabel('Markdown (basis points)',{exact:true}).fill('1000');
+  await region.getByLabel('Additional spend (INR paise)',{exact:true}).fill('12345');
+  await region.getByRole('button',{name:'Add bundle component',exact:true}).click();
+  await region.getByLabel('Variant ID 2',{exact:true}).fill('v7');
+  await region.getByLabel('Units per bundle 1',{exact:true}).fill('2');
+  await region.getByRole('button',{name:'Compare scenario',exact:true}).click();
+  await expect(region.getByTestId('clearance-summary')).toContainText('180 variants ranked',{timeout:60000});
+  await region.getByText('Selected stock and cost evidence',{exact:true}).click();
+  await expect(region.locator('pre').first()).toContainText('"additional_spend_paise": 12345');
+  await expect(region.locator('pre').first()).toContainText('"units": 6');
+  await region.getByLabel('Variable cost (paise / sold unit)',{exact:true}).fill('');
+  await region.getByRole('button',{name:'Compare scenario',exact:true}).click();
+  await expect(region.getByRole('cell').filter({hasText:'incomplete cost coverage'})).toHaveCount(2,{timeout:60000});
+  await expect(region.getByTestId('clearance-deltas')).toContainText('contribution change Unknown');
+  snap=await(await page.request.get('/api/clearance')).json();expect(snap.pins).toEqual(pins);
+  expect(await region.getByRole('button',{name:/publish|approve|execute/i}).count()).toBe(0);
+  await region.screenshot({path:'../.runtime/real-clearance.png'});
+});
+
+test('actual stopped Exasol removes clearance ranking and comparison',async({page})=>{
+  test.skip(!process.env.E2E_OPERATOR_PASSWORD||process.env.E2E_DATABASE_FAILURE!=='1','Actual outage mode only');
+  test.setTimeout(90000);
+  await page.goto('/');await page.getByLabel('Operator password').fill(process.env.E2E_OPERATOR_PASSWORD!);
+  await page.getByRole('button',{name:'Open workspace'}).click();
+  const region=page.getByRole('region',{name:'Clearance',exact:true});
+  await expect(region.getByRole('alert')).toContainText('Clearance Exasol unavailable',{timeout:60000});
+  await expect(region.locator('table')).toHaveCount(0);await expect(region.locator('details')).toHaveCount(0);
+  await expect(region.getByTestId('clearance-summary')).toHaveCount(0);
+  await expect(region.locator('aside')).toContainText('Query unavailable');
+  await region.screenshot({path:'../.runtime/real-clearance-outage.png'});
+});

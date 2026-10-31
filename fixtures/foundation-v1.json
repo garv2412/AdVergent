@@ -1,0 +1,14 @@
+{
+  "version": "foundation-v1",
+  "scenario_clock": "2026-10-01T00:00:00Z",
+  "description": "Hand-calculated delivered merchandise example; all amounts exclude tax. This is not the full finance module.",
+  "lines": [
+    {"id": "golden-1", "net_sales_paise": 240000, "product_cost_paise": 132000, "variable_cost_paise": 30000},
+    {"id": "golden-2", "net_sales_paise": 160000, "product_cost_paise": 88000, "variable_cost_paise": 20000}
+  ],
+  "spend": [
+    {"id": "meta-1", "spend_paise": 60000},
+    {"id": "google-1", "spend_paise": 40000}
+  ],
+  "expected": {"line_count": 2, "net_sales_paise": 400000, "product_cost_paise": 220000, "variable_cost_paise": 50000, "ad_spend_paise": 100000, "contribution_before_ads_paise": 130000, "contribution_after_ads_paise": 30000}
+}

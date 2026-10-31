@@ -1,0 +1,261 @@
+{
+  "version": "mapping-attribution-v1",
+  "model": "last-paid-click-7d-no-view-v1",
+  "observed_at": "2026-10-30T10:00:00Z",
+  "mappings": [
+    {
+      "id": "single",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "products": [
+        "p0"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 9500,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": false,
+      "actor": "fixture-operator",
+      "reason": "Explicit reviewed product set"
+    },
+    {
+      "id": "mixed",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "products": [
+        "p0",
+        "p1"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 9500,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": false,
+      "actor": "fixture-operator",
+      "reason": "Explicit reviewed product set"
+    },
+    {
+      "id": "ambiguous-a",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-shopping-group",
+      "products": [
+        "p2"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 9500,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": false,
+      "actor": "fixture-operator",
+      "reason": "Explicit reviewed product set"
+    },
+    {
+      "id": "ambiguous-b",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-shopping-group",
+      "products": [
+        "p3"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 9500,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": false,
+      "actor": "fixture-operator",
+      "reason": "Explicit reviewed product set"
+    },
+    {
+      "id": "base",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-mixed-ad",
+      "products": [
+        "p4"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 9500,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": false,
+      "actor": "fixture-operator",
+      "reason": "Explicit reviewed product set"
+    },
+    {
+      "id": "override",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-mixed-ad",
+      "products": [
+        "p0",
+        "p1"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 9500,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": true,
+      "actor": "fixture-operator",
+      "reason": "Correct historical catalog set; supersedes candidate"
+    },
+    {
+      "id": "low",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-search-b-ad",
+      "products": [
+        "p9"
+      ],
+      "provenance": "synthetic merchant catalog review",
+      "confidence_bps": 6000,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": "2027-01-01T00:00:00Z",
+      "override": false,
+      "actor": "fixture-operator",
+      "reason": "Explicit reviewed product set"
+    }
+  ],
+  "clicks": [
+    {
+      "id": "o0-old",
+      "order_id": "o0",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-05-01T18:00:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "o0-last",
+      "order_id": "o0",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "clicked_at": "2026-05-02T18:00:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "o0-last",
+      "order_id": "o0",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "clicked_at": "2026-05-02T18:00:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "boundary",
+      "order_id": "o1",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-04-27T17:59:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "expired",
+      "order_id": "o2",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-04-28T17:57:59+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "view",
+      "order_id": "o3",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-05-05T17:57:00+00:00",
+      "kind": "view",
+      "identifiable": true
+    },
+    {
+      "id": "future",
+      "order_id": "o4",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-05-08T17:56:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "tie-a",
+      "order_id": "o5",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-05-07T17:55:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "tie-b",
+      "order_id": "o5",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "clicked_at": "2026-05-07T17:55:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "anonymous",
+      "order_id": "o6",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "clicked_at": "2026-05-08T17:54:00+00:00",
+      "kind": "paid_click",
+      "identifiable": false
+    },
+    {
+      "id": "mixed-order",
+      "order_id": "o10",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "clicked_at": "2026-05-12T17:50:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    },
+    {
+      "id": "cross-product-order",
+      "order_id": "o35",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "clicked_at": "2026-06-06T17:25:00+00:00",
+      "kind": "paid_click",
+      "identifiable": true
+    }
+  ],
+  "platform_claims": [
+    {
+      "id": "meta-claim",
+      "order_id": "o0",
+      "platform": "meta",
+      "account_id": "meta-inr",
+      "resource_id": "m-ad",
+      "reported_value_paise": 100000
+    },
+    {
+      "id": "google-claim",
+      "order_id": "o0",
+      "platform": "google",
+      "account_id": "google-inr",
+      "resource_id": "g-assets",
+      "reported_value_paise": 100000
+    }
+  ]
+}
