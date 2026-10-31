@@ -1,8 +1,14 @@
 # Demo video
 
-**Recording URL: pending.** This document is a recording guide, not a demonstration video. The repository cannot yet support a confirmation that all submission materials, including a demo video link, are present.
+[Watch or download the MP4](https://raw.githubusercontent.com/garv2412/AdVergent/main/docs/submission/AdVergent-demo.mp4)
 
-Supply an accessible recording URL and add it to the README submission table and [submission description](../hackathon-submission.md). Verify that judges can open it without requesting access. Confirm the event's required format and maximum duration.
+Duration: approximately **4 minutes 48 seconds**. Format: H.264 video with AAC audio, 1280 × 840 pixels. The video includes burned-in captions. [Separate subtitles](AdVergent-demo.srt) and [full transcript](demo-transcript.md) are available.
+
+Created October 31, 2026 IST from actual authenticated views of the existing local application and the project pitch deck. This is an edited still-frame walkthrough with synthetic voice narration, rather than a continuous screen recording. All captured analytical endpoints returned HTTP 200. No API response substitutes, source imports, advertising changes, approvals or action execution were used to create the footage. Login/logout used the existing private operator configuration, which is excluded from the recording.
+
+## Production tools and rights
+
+Playwright and installed Chrome captured the application views. Microsoft Windows System.Speech provided the Zira synthetic voice. FFmpeg 7.1 encoded the video/audio and captions, using a local build distributed through imageio-ffmpeg 0.7.0. The wrapper declares BSD-2-Clause; the encoder build reports GPL version 3 or later. Tool binaries and private build files are excluded from Git. No external model API or paid service was used. Project-authored screenshots, slide content, narration text and finished media accompany the repository MIT licence; upstream tools retain their own terms. No music or stock imagery is included.
 
 ## Suggested recording sequence
 

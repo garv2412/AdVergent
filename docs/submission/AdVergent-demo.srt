@@ -1,0 +1,181 @@
+1
+00:00:00,000 --> 00:00:09,807
+AdVergent addresses Track Two: Customers, Channels and Demand. This narrated walkthrough
+combines captured views of the working local
+
+2
+00:00:09,807 --> 00:00:19,099
+application with pitch slides. The analytics use real Exasol Personal. Business data is
+synthetic, and advertising actions are
+
+3
+00:00:19,099 --> 00:00:19,836
+simulated.
+
+4
+00:00:20,236 --> 00:00:29,297
+Apparel merchants compare advertising, orders and warehouse stock in separate systems.
+Reported revenue can hide returns, cash on
+
+5
+00:00:29,297 --> 00:00:38,779
+delivery failures and missing costs. Growing demand can coincide with unavailable sizes.
+AdVergent brings this evidence together before
+
+6
+00:00:38,779 --> 00:00:41,096
+recommending a spending decision.
+
+7
+00:00:41,496 --> 00:00:51,601
+Here is the authenticated application. Its persistent labels distinguish synthetic
+commerce and advertising data, real Exasol analytics and
+
+8
+00:00:51,601 --> 00:01:01,633
+simulated actions. Historical evidence can be stale. Missing costs remain unknown, and
+every advertising change requires separate explicit
+
+9
+00:01:01,633 --> 00:01:02,287
+approval.
+
+10
+00:01:02,687 --> 00:01:11,214
+The separate two-line foundation example makes the calculation easy to verify. Four
+thousand rupees in sales, less product
+
+11
+00:01:11,214 --> 00:01:19,601
+costs of twenty-two hundred, variable costs of five hundred and advertising of one
+thousand, leaves three hundred rupees
+
+12
+00:01:19,601 --> 00:01:24,353
+in contribution after ads. Full commerce finance appears separately.
+
+13
+00:01:24,753 --> 00:01:33,806
+The commerce finance view reconciles three thousand orders and shows ninety-eight point
+five percent cost coverage. Because some
+
+14
+00:01:33,806 --> 00:01:43,425
+costs are incomplete, full contribution stays unknown. The covered subtotal remains
+separate. Delivered revenue, returns and actual cash
+
+15
+00:01:43,425 --> 00:01:45,829
+settlement have distinct meanings.
+
+16
+00:01:46,229 --> 00:01:56,781
+Channel analysis uses reviewed product mappings and unique first-party attribution.
+Platform claims remain separate, preventing overlapping claims from
+
+17
+00:01:56,781 --> 00:02:05,795
+becoming extra orders or revenue. Native product hints do not automatically become
+trusted mappings. The demonstrated sources are
+
+18
+00:02:05,795 --> 00:02:08,870
+synthetic, with no live platform connection.
+
+19
+00:02:09,270 --> 00:02:17,751
+Customer cohorts begin with the first observed delivered purchase. The view reports
+seven hundred and fifteen assigned customers
+
+20
+00:02:17,751 --> 00:02:25,768
+and keeps mature and immature sixty and ninety day windows separate. Missing costs and
+incomplete history remain visible.
+
+21
+00:02:25,768 --> 00:02:31,400
+These are descriptive contribution windows, without calibrated lifetime value claims.
+
+22
+00:02:31,800 --> 00:02:41,149
+Inventory reconciles one hundred and eighty variants and eight thousand eight hundred
+and seventeen sellable units. Size availability,
+
+23
+00:02:41,149 --> 00:02:49,662
+demand and lead times constrain advice. The displayed source is stale, so action
+eligibility remains blocked. Replaying an
+
+24
+00:02:49,662 --> 00:02:52,871
+old source never makes its observations fresh.
+
+25
+00:02:53,271 --> 00:03:02,481
+The breakout view evaluates deduplicated product views, carts and clicks with coverage
+and stock context. The historical default
+
+26
+00:03:02,481 --> 00:03:10,611
+evidence produces no current ranks. Sparse or stale signals lead to abstention. Funnel
+events add no revenue, and
+
+27
+00:03:10,611 --> 00:03:14,496
+a descriptive score is never a confidence probability.
+
+28
+00:03:14,896 --> 00:03:23,061
+Budget scenarios retain the existing total of eleven thousand rupees per day across five
+budgets. Proposed changes are
+
+29
+00:03:23,061 --> 00:03:32,609
+bounded, and inventory protection takes precedence. Default budgets remain frozen
+because the evidence is unsuitable. The application does
+
+30
+00:03:32,609 --> 00:03:36,137
+not invent a response curve to force an allocation.
+
+31
+00:03:36,537 --> 00:03:46,611
+Unified decisions produce one coherent recommendation per resource and explain conflicts
+and blockers. The nineteen default decisions abstain.
+
+32
+00:03:46,611 --> 00:03:56,401
+This screen creates no advertising change. Any future simulated mutation still needs
+exact persisted approval, fresh evidence revalidation
+
+33
+00:03:56,401 --> 00:03:58,033
+and verified read-back.
+
+34
+00:03:58,433 --> 00:04:09,865
+Exasol Personal stores typed analytical facts and executes the joins, aggregates and
+reconciliation through encrypted PyExasol connections. PostgreSQL
+
+35
+00:04:09,865 --> 00:04:19,773
+keeps sessions, jobs, approvals and audit history. FastAPI serves the React interface.
+An unavailable analytical database does not
+
+36
+00:04:19,773 --> 00:04:22,593
+trigger a fabricated fallback answer.
+
+37
+00:04:22,993 --> 00:04:31,627
+The public repository includes source code, synthetic fixtures, the pitch deck and local
+setup instructions. This is a
+
+38
+00:04:31,627 --> 00:04:42,749
+synthetic local prototype. The evidence demonstrates synthetic local behavior. Live
+fidelity, measured financial benefit and production readiness remain
+
+39
+00:04:42,749 --> 00:04:47,797
+unverified. The repository documents the evidence and remaining gaps.

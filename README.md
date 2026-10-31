@@ -15,11 +15,15 @@ The working local prototype uses **real Exasol Personal analytics**, project-aut
 | --- | --- |
 | Source code | [Backend](backend/), [frontend](frontend/), [migrations](migrations/) and [synthetic fixtures](fixtures/) |
 | Pitch deck | [Editable PowerPoint](docs/submission/AdVergent-pitch-deck.pptx) and [readable text companion](docs/submission/pitch-deck.md) |
-| Demo video link | **Pending: an accessible recording URL must be added before confirming submission completeness** |
+| Demo video link | [Watch or download the narrated demo](https://raw.githubusercontent.com/garv2412/AdVergent/main/docs/submission/AdVergent-demo.mp4) · about 4m 48s · [transcript](docs/submission/demo-transcript.md) · [subtitles](docs/submission/AdVergent-demo.srt) |
 | Setup and run instructions | [Reference environment and database setup](docs/phase-1-setup.md), [ordered application reproduction](docs/hackathon-submission.md#setup-and-reproduction) and commands below |
 | Problem statement, data and third-party disclosures | [Submission description](docs/hackathon-submission.md) |
-| Demonstration sequence | [Recording guide](docs/submission/demo-video.md) and [operator runbook](docs/phase-14-demo.md) |
+| Demonstration sequence | [Video details and recording guide](docs/submission/demo-video.md) and [operator runbook](docs/phase-14-demo.md) |
 | Licence | [MIT](LICENSE). Upstream tools retain their own terms. |
+
+[![AdVergent demo video preview](docs/submission/demo-poster.png)](https://raw.githubusercontent.com/garv2412/AdVergent/main/docs/submission/AdVergent-demo.mp4)
+
+The video is an edited walkthrough of actual authenticated app captures and pitch slides, with synthetic voice narration and captions.
 
 ### What the application does
 
@@ -81,7 +85,7 @@ Real-store and browser reproduction, including the non-mutating suite boundaries
 
 ### Verification scope
 
-Phases 1–13 have documented synthetic local gates using actual Exasol/PostgreSQL. Phase 14 hardening remains in progress, with its final gate pending. [Recorded evidence](docs/handoffs/phase-13.md) and [current status](docs/project-status.md) distinguish isolated tests, actual-store tests and browser rendering substitutes. Live API fidelity, measured merchant benefit, calibrated predictions and production readiness remain unverified.
+Phases 1–13 have documented synthetic local gates using actual Exasol/PostgreSQL. Consult the dated handoffs for current gate status. [Recorded evidence](docs/handoffs/phase-13.md) and [current status](docs/project-status.md) distinguish isolated tests, actual-store tests and browser rendering substitutes. Live API fidelity, measured merchant benefit, calibrated predictions and production readiness remain unverified.
 
 ## Project documentation
 

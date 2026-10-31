@@ -1,6 +1,6 @@
-# AdVergent — Hackathon submission draft
+# AdVergent — Hackathon submission
 
-Prepared October 31, 2026 IST. Track confirmed by the submitter. Replace the video placeholder before submitting; this draft does not establish completion of the pending Phase 14 gate.
+Prepared October 31, 2026 IST. Track confirmed by the submitter. Verification claims follow the dated phase handoffs; creating submission materials does not itself verify an application gate.
 
 ## Selected problem track
 
@@ -28,7 +28,7 @@ Exasol Personal is the analytical engine, accessed through encrypted, certificat
 
 The synthetic commerce dataset includes 30 products, 180 variants, 1,000 customers and 3,000 orders. A separate foundation example verifies INR 4,000 sales minus INR 2,200 product costs, INR 500 variable costs and INR 1,000 advertising spend equals INR 300 contribution after ads. This foundation example is separate from full-commerce results.
 
-Documented Phase 13 verification includes 269 passing broad non-mutating real-store tests, followed by one separate focused real-store pass. Healthy and actual-Exasol-outage browser runs each passed 15 cases with 12 mode-specific skips. Phase 14 hardening remains in progress; these results are prior recorded evidence, not checks rerun for this submission draft. No measured merchant uplift, calibrated predictive accuracy or production-readiness claim is made.
+Documented Phase 13 verification includes 269 passing broad non-mutating real-store tests, followed by one separate focused real-store pass. Healthy and actual-Exasol-outage browser runs each passed 15 cases with 12 mode-specific skips. These results are prior recorded evidence, not checks rerun for this submission. Consult the current Phase 14 handoff for later verification. No measured merchant uplift, calibrated predictive accuracy or production-readiness claim is made.
 
 ## Public code repository
 
@@ -92,11 +92,11 @@ Runtime dependencies are pinned in `requirements-lock.txt` and `frontend/package
 
 Pitch deck: [editable PowerPoint](submission/AdVergent-pitch-deck.pptx), with a [readable text companion](submission/pitch-deck.md).
 
-**Video URL: [ADD AN ACCESSIBLE RECORDING LINK BEFORE SUBMISSION]**
+**Video URL: [Watch or download the narrated MP4](https://raw.githubusercontent.com/garv2412/AdVergent/main/docs/submission/AdVergent-demo.mp4)**
 
-[Recording guide and narration](submission/demo-video.md). The missing accessible video URL prevents a complete-materials confirmation.
+[Video production details](submission/demo-video.md), [transcript](submission/demo-transcript.md) and [subtitles](submission/AdVergent-demo.srt). The approximately 4m 48s video combines actual authenticated application captures with pitch slides and synthetic voice narration. It is an edited still-frame walkthrough, not a continuous screen recording.
 
-No submission video was found in the repository. Confirm the event's required duration and format; the sequence below is a proposed recording outline, not an official requirement:
+The video is included in the repository. Confirm the event's required duration and format. The demonstration covers:
 
 1. Explain the merchant problem and Track 02 fit.
 2. Show the authenticated app, synthetic-data labels and real Exasol foundation calculation.
@@ -107,4 +107,4 @@ No submission video was found in the repository. Confirm the event's required du
 
 Supporting materials: [architecture](architecture.md), [setup](phase-1-setup.md), [acceptance evidence matrix](phase-14-evidence.md), [demo runbook](phase-14-demo.md), [Phase 13 verified handoff](handoffs/phase-13.md), [Phase 14 current handoff](handoffs/phase-14.md), and `openapi.json`.
 
-Before submission, insert the accessible video link, confirm the complete source/docs/fixtures are accessible on GitHub, and update gate status only from completed verification. The recorded project deadline of October 30, 2026 at 23:59 IST has passed; this draft is dated October 31 and does not establish event eligibility or a deadline extension.
+Before submission, confirm the materials and MP4 are accessible on GitHub and meet the event format. Update gate status only from completed verification. The recorded project deadline of October 30, 2026 at 23:59 IST has passed; this draft is dated October 31 and does not establish event eligibility or a deadline extension.

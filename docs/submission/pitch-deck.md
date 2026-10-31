@@ -79,7 +79,7 @@ Recorded evidence as of October 31, 2026 IST
 
 - **269 real-store passes:** Phase 13 broad non-mutating regression, plus a separate focused pass.
 - **Healthy and actual outage:** Each Phase 13 browser run: 15 passed, 12 mode skips.
-- **Current boundary:** Phase 14 gate pending. Live fidelity and production readiness remain unverified.
+- **Current boundary:** Synthetic local scope. Live fidelity and production readiness remain unverified.
 
 These are historical executed commands, not a new combined test run. Across browser modes there were 27 distinct cases, including two inherited rendering substitutes. Financial benefit, calibrated predictive accuracy, full history, production scale and hard-kill/new-host recovery remain unverified.
 
@@ -93,6 +93,6 @@ Public source and reproducible inputs
 - **Setup and run:** README.md and docs/phase-1-setup.md document dependencies and ordered imports.
 - **Data and licence:** Project-authored synthetic fixtures under the repository MIT licence.
 
-Python/FastAPI, React/TypeScript, PostgreSQL, Exasol Personal/PyExasol and Podman. Upstream products retain their own terms. Fresh-machine reproduction remains unverified. The project requires no paid API or live merchant credentials. The demo recording URL is pending in README.md.
+Python/FastAPI, React/TypeScript, PostgreSQL, Exasol Personal/PyExasol and Podman. Upstream products retain their own terms. Fresh-machine reproduction remains unverified. The project requires no paid API or live merchant credentials. The demonstration video and transcript are linked in README.md.
 
 Sources: README.md; LICENSE; docs/phase-1-setup.md; docs/hackathon-submission.md
