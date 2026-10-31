@@ -90,7 +90,11 @@ Runtime dependencies are pinned in `requirements-lock.txt` and `frontend/package
 
 ## Demonstration video and supporting materials
 
+Pitch deck: [editable PowerPoint](submission/AdVergent-pitch-deck.pptx), with a [readable text companion](submission/pitch-deck.md).
+
 **Video URL: [ADD AN ACCESSIBLE RECORDING LINK BEFORE SUBMISSION]**
+
+[Recording guide and narration](submission/demo-video.md). The missing accessible video URL prevents a complete-materials confirmation.
 
 No submission video was found in the repository. Confirm the event's required duration and format; the sequence below is a proposed recording outline, not an official requirement:
 
