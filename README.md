@@ -36,6 +36,3 @@ Track 02 — Customers, Channels & Demand. See the [submission description, setu
 - [Inventory contract and commands](docs/phase-6-inventory.md)
 - [Diagnostics contract and commands](docs/phase-7-diagnostics.md)
 
-Each phase is handled in a separate chat. Read the current status and handoff before starting work; planned acceptance cases are not completed tests.
-
-Phase 10 adds read-only synthetic breakout signals and explicit sparse/stale abstention. See the [breakout contract](docs/phase-10-breakout.md) and [Phase 10 handoff](docs/handoffs/phase-10.md). No added revenue, budget forecast, publishing or advertising mutation follows.
